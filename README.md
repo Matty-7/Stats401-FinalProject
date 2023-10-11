@@ -4,3 +4,4 @@ As aspiring data scientists, many of us envision launching our careers in IT cor
 
 
 1. WordCloud: https://www.kaggle.com/datasets/harishkumardatalab/data-science-salary-2021-to-2023/
+2. Choropleth: https://www.kaggle.com/datasets/arshkon/linkedin-job-postings/data
