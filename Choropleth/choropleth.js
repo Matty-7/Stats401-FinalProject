@@ -1,17 +1,27 @@
-import {stateShapes} from "@observablehq/us-county-datasets"
+// Read the CSV file
+d3.csv("city_job_count_final.csv").then(function(data) {
+  
+  // Select the body of the HTML document
+  var body = d3.select("body");
+  
+  // Create an SVG element
+  var svg = body.append("svg")
+    .attr("width", 960)
+    .attr("height", 600);
 
-Plot.plot({
-    projection: "albers-usa",
-    width: exampleWidth,
-    height: exampleHeight,
-    marks: [
-      Plot.frame({stroke: "white", fill: "#111"}),
-      Plot.geo(stateShapes, {stroke: "#fff", strokeWidth: 0.35})
-    ]
-  })
+  // Define a scale for the circle radius
+  var radiusScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return d.Job_Count; })])
+    .range([5, 50]);
 
-  usStateCodes = import('https://cdn.skypack.dev/us-state-codes@1.1.2?min').then(d => d.default)
-  stateShapes = topojson.feature(us, us.objects.states)
-  statesByFips = new Map(Array.from(us.objects.states.geometries, d => [d.id, d.properties]))
-  // The borders of the states are merged so we can render a single line where they would otherwise overlap
-  statesMesh = topojson.mesh(us, us.objects.states, (a, b) => a !== b)
+  // Create circles for each city
+  svg.selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", function(d, i) { return i * 60 + 50; })  // For now, place them horizontally
+    .attr("cy", 300)  // Vertically centered
+    .attr("r", function(d) { return radiusScale(d.Job_Count); })  // Radius based on job count
+    .attr("fill", "blue");
+
+});
