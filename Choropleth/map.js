@@ -1,7 +1,10 @@
 // map.js
-d3.json('path-to-your-geojson-file.json').then(data => {
+d3.json('gz_2010_us_050_00_5m.json').then(data => {
+    const width = 960;
+    const height = 600;
     const projection = d3.geoAlbersUsa().fitSize([width, height], data);
     const path = d3.geoPath().projection(projection);
+    
 
     d3.select('body')
         .append('svg')
