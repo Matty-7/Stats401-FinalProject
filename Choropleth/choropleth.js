@@ -1,5 +1,6 @@
-// Read the CSV file
-d3.csv("city_job_count_final.csv").then(function(data) {
+
+// Read the updated CSV file
+d3.csv("city_job_count_with_coordinates.csv").then(function(data) {
   
   // Select the body of the HTML document
   var body = d3.select("body");
@@ -19,9 +20,9 @@ d3.csv("city_job_count_final.csv").then(function(data) {
     .data(data)
     .enter()
     .append("circle")
-    .attr("cx", function(d, i) { return i * 60 + 50; })  // For now, place them horizontally
-    .attr("cy", 300)  // Vertically centered
-    .attr("r", function(d) { return radiusScale(d.Job_Count); })  // Radius based on job count
-    .attr("fill", "blue");
+    .attr("cx", function(d) { return d.Longitude; })
+    .attr("cy", function(d) { return d.Latitude; })
+    .attr("r", function(d) { return radiusScale(d.Job_Count); })
+    .attr("fill", "blue"); // Set the color to blue as per user preference
 
 });
