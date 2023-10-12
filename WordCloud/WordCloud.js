@@ -1,5 +1,5 @@
 // Load the CSV data using D3
-d3.csv("WordCloud.csv", function(error, data) {
+d3.csv("WordsCloud.csv", function(error, data) {
     if (error) throw error;
 
     // Parse salary_in_usd as numbers
@@ -30,7 +30,8 @@ d3.csv("WordCloud.csv", function(error, data) {
         }))
         .padding(5)
         .rotate(function() { return (Math.floor(Math.random() * 2)) * 90; })
-        .fontSize(function(d) { return Math.sqrt(d.frequency * 20000); }) // Adjust as needed
+        // .fontSize(function(d) { return Math.sqrt(d.frequency * 20000); }) // Adjust as needed
+        .fontSize(function(d) { return Math.exp(d.frequency)*10; })  // for wordscloud
         .on("end", draw);
 
     wordCloudLayout.start();
@@ -44,11 +45,11 @@ d3.csv("WordCloud.csv", function(error, data) {
             .enter()
             .append("text")
             .style("font-size", function(d) { return d.size + "px"; })
-            .style("fill",   function(d) { return myColor(d.salary_in_usd/22424); })
+            // .style("fill",   function(d) { return myColor(d.salary_in_usd/22424); })
             .attr("text-anchor", "middle")
             .attr("transform", function(d) {
                 return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-                // return "translate(" + [d.x, d.y] + ")"; 
+                // return "translate(" +     [d.x, d.y] + ")"; 
             })
             .text(function(d) { return d.text; });
 
