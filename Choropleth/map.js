@@ -8,6 +8,7 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
 
     d3.select('body')
         .append('svg')
+        .attr('id', 'map')  // Add this line
         .attr('width', width)
         .attr('height', height)
         .selectAll('path')

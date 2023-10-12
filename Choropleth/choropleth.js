@@ -2,8 +2,10 @@
 async function fetchData() {
   const response = await fetch('city_job_count_with_coordinates.json');
   const data = await response.json();
+  console.log(data)
   return data;
 }
+
 
 // Function to draw bubbles on the map
 async function drawBubbles() {
