@@ -1,5 +1,5 @@
 // map.js
-d3.json('gz_2010_us_050_00_5m.json').then(data => {
+d3.json('gz_2010_us_050_00_500k.json').then(data => {
     const width = 960;
     const height = 600;
     const projection = d3.geoAlbersUsa().fitSize([width, height], data);
