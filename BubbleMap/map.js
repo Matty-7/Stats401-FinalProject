@@ -48,7 +48,6 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
                             .html(`<strong>${d.city}</strong><br/>Jobs: ${d.job_count}`);
                     })
                     
-    
                     .on("mouseout", function() {
                         // Remove tooltip
                         d3.select(".tooltip").remove();
