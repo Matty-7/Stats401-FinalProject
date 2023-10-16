@@ -3,9 +3,10 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
     const width = 960;
     const height = 600;
     const projection = d3.geoAlbersUsa().fitSize([width, height], data);
+    console.log("Projection:", projection);
     const path = d3.geoPath().projection(projection);
+    console.log("Map drawn");
     
-
     d3.select('body')
         .append('svg')
         .attr('id', 'map')  // Add this line
@@ -18,3 +19,25 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
         .attr('d', path)
         .attr('fill', 'steelblue');
 });
+
+
+// Read the city and job count data from city_job_count_with_coordinates.json
+d3.json('city_job_count_with_coordinates.json').then(cityJobData => {
+    console.log("City and Job Data:", cityJobData);
+    // Add the code for drawing city markers here
+});
+
+
+    // Adding city markers
+    cityJobData.forEach(d => {
+        const coordinates = projection([d.coordinates[0], d.coordinates[1]]);
+        if (coordinates) {  // Check if the coordinates are within the map
+            d3.select('#map')  // Select the SVG with id 'map'
+                .append('circle')
+                .attr('cx', coordinates[0])
+                .attr('cy', coordinates[1])
+                .attr('r', Math.sqrt(d.job_count) * 2)  // Radius based on job_count
+                .attr('fill', 'red')
+                .attr('opacity', 0.6);
+        }
+    });
