@@ -33,8 +33,8 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
                     .attr('r', Math.sqrt(d.job_count) * 2)  // Radius based on job_count
                     .attr('fill', 'red')
                     .attr('opacity', 0.6)
-    // Add hover interactions for the bubbles
-    .on("mouseover", function(event, d) {
+
+    .on("mouseover", (event, d) => {
         // Show tooltip with city name and job count
         d3.select("body")
             .append("div")
@@ -43,6 +43,7 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
             .style("top", (event.pageY - 10) + "px")
             .html(`<strong>${d.city}</strong><br/>Jobs: ${d.job_count}`);
     })
+    
     .on("mouseout", function() {
         // Remove tooltip
         d3.select(".tooltip").remove();
