@@ -18,26 +18,40 @@ d3.json('gz_2010_us_050_00_500k.json').then(data => {
         .append('path')
         .attr('d', path)
         .attr('fill', 'steelblue');
-});
 
 
-// Read the city and job count data from city_job_count_with_coordinates.json
-d3.json('city_job_count_with_coordinates.json').then(cityJobData => {
-    console.log("City and Job Data:", cityJobData);
-    // Add the code for drawing city markers here
-});
-
-
-    // Adding city markers
-    cityJobData.forEach(d => {
-        const coordinates = projection([d.coordinates[0], d.coordinates[1]]);
-        if (coordinates) {  // Check if the coordinates are within the map
-            d3.select('#map')  // Select the SVG with id 'map'
-                .append('circle')
-                .attr('cx', coordinates[0])
-                .attr('cy', coordinates[1])
-                .attr('r', Math.sqrt(d.job_count) * 2)  // Radius based on job_count
-                .attr('fill', 'red')
-                .attr('opacity', 0.6);
-        }
+        // Load the city job count and coordinates data
+    d3.json('city_job_count_with_coordinates.json').then(cityData => {
+        // Adding city markers
+        cityData.forEach(d => {
+            const coordinates = projection([d.coordinates[0], d.coordinates[1]]);
+            if (coordinates) {  // Check if the coordinates are within the map
+                d3.select('#map')  // Select the SVG with id 'map'
+                    .append('circle')
+                    .attr('cx', coordinates[0])
+                    .attr('cy', coordinates[1])
+                    .attr('r', Math.sqrt(d.job_count) * 2)  // Radius based on job_count
+                    .attr('fill', 'red')
+                    .attr('opacity', 0.6)
+    // Add hover interactions for the bubbles
+    .on("mouseover", function(event, d) {
+        // Show tooltip with city name and job count
+        d3.select("body")
+            .append("div")
+            .attr("class", "tooltip")
+            .style("left", (event.pageX + 10) + "px")
+            .style("top", (event.pageY - 10) + "px")
+            .html(`<strong>${d.city}</strong><br/>Jobs: ${d.job_count}`);
+    })
+    .on("mouseout", function() {
+        // Remove tooltip
+        d3.select(".tooltip").remove();
     });
+
+            }
+        });
+    });
+
+});
+
+
