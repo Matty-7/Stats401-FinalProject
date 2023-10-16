@@ -16,6 +16,12 @@
             border-radius: 5px;
             pointer-events: none;
         }
+        /* Add this style block for the dropdown menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 20px;
+            left: 980px;  /* Adjust this based on your SVG width */
+        }
     </style>
     
     <script type="text/javascript", src = "d3.v7.js"> </script>
@@ -27,12 +33,12 @@
         <li><a href="#">About</a></li>
     </nav>
 
-    <!-- Add the dropdown right below the navigation -->
-    <select id="jobCountFilter">
+    <!-- Add the dropdown with the new CSS class -->
+    <select id="jobCountFilter" class="dropdown-menu">
         <option value="all">All</option>
         <option value="0-50">0-50</option>
-        <option value="51-100">51-150</option>
-        <option value="201-300">150+</option>
+        <option value="51-150">51-150</option>
+        <option value="150+">150+</option>
     </select>
 
      <script type="text/javascript" src="map.js"></script>
