@@ -31,7 +31,7 @@ d3.csv("WordsCloud.csv", function(error, data) {
         .padding(5)
         .rotate(function() { return (Math.floor(Math.random() * 2)) * 90; })
         // .fontSize(function(d) { return Math.sqrt(d.frequency * 20000); }) // Adjust as needed
-        .fontSize(function(d) { return Math.exp(d.frequency)*10; })  // for wordscloud
+        .fontSize(function(d) { return d.frequency*50; })  // for wordscloud
         .on("end", draw);
 
     wordCloudLayout.start();
@@ -61,7 +61,8 @@ d3.csv("WordsCloud.csv", function(error, data) {
                 .attr("class", "tooltip")
                 .style("opacity", 0);
 
-            tooltip.html("Job Title: " + d.text + "<br>Salary: $" + d.salary_in_usd + "<br>Frequency: " + d.frequency)
+            // tooltip.html("Job Title: " + d.text + "<br>Salary: $" + d.salary_in_usd + "<br>Frequency: %" + d.frequency)
+            tooltip.html("Job Title: " + d.text + "<br>Frequency: " + d.frequency + " %")
                 .style("left", (d3.event.pageX + 10) + "px")
                 .style("top", (d3.event.pageY - 28) + "px")
                 .transition()
