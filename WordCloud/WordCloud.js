@@ -1,16 +1,16 @@
 // Load the CSV data using D3
-d3.csv("WordsCloud.csv", function(error, data) {
+d3.csv("Wordcloud.csv", function(error, data) {
     if (error) throw error;
 
     // Parse salary_in_usd as numbers
-    data.forEach(function(d) {
-        d.salary_in_usd = d.salary_in_usd;
-        d.frequency = d.frequency;
-    });
+    // data.forEach(function(d) {
+    //     d.salary_in_usd = d.salary_in_usd;
+    //     d.frequency = d.frequency;
+    // });
 
     // Set up the SVG container for the word cloud
     const svgWidth = 800;   
-    const svgHeight = 400;
+    const svgHeight = 600;
 
     const svg = d3.select("#word-cloud")
         .append("svg")
@@ -22,19 +22,87 @@ d3.csv("WordsCloud.csv", function(error, data) {
 
     var myColor = d3.scaleSequential().domain([0,10]).interpolator(d3.interpolatePuRd);
 
+    let allGroup = Array.from(new Set(data.map(d => d.type)))
+
+    d3.select("#selectButton")
+      .selectAll('myOptions')
+     	.data(allGroup)
+      .enter()
+    	.append('option')
+      .text(function (d) { return d; }) // text showed in the menu
+      .attr("value", function (d) { return d; }) // corresponding value returned by the button
+
+    const filteredData = data.filter(d => d.type === "frequency");
+    fre = data.filter(function(d){return d.type === "frequency";});
+
     // Create the word cloud layout using d3-cloud
     const wordCloudLayout = d3.layout.cloud()
         .size([svgWidth, svgHeight])
-        .words(data.map(function(d) {
-            return { text: d.job_title, salary_in_usd : d.salary_in_usd,  frequency: d.frequency };
-        }))
+        .words(filteredData.map(d => ({
+            text: d.job_title,
+            frequency: d.frequency
+        })))
         .padding(5)
-        .rotate(function() { return (Math.floor(Math.random() * 2)) * 90; })
+        .rotate(0)
+        // .rotate(function() { return (Math.floor(Math.random() * 2)) * 90; })
         // .fontSize(function(d) { return Math.sqrt(d.frequency * 20000); }) // Adjust as needed
-        .fontSize(function(d) { return d.frequency*50; })  // for wordscloud
+        // .fontSize(function(d) { return d.frequency * 9 / d3.min(data, function(fre) { return fre.frequency })})  // for wordscloud
+        .fontSize(function(d) { return d.frequency * 9 / d3.min(data, function(fre) { return fre.frequency })}) 
         .on("end", draw);
 
     wordCloudLayout.start();
+
+    function update(selectedGroup){
+
+        d3.select("#word-cloud").select("svg").select("g").remove()
+
+        temp = data.filter(function(d){return d.type === selectedGroup;});
+
+        if (selectedGroup === "frequency"){
+            rate = 9 / d3.min(data, function(temp) { return temp.frequency; });
+        }
+        else if(selectedGroup === "max_salary"){
+            rate = 25/d3.max(data, function(temp) { return temp.frequency; });
+        }
+        else{
+            rate = 40/d3.max(data, function(temp) { return temp.frequency; });
+        }
+        
+
+        const filteredData = data.filter(d => d.type === selectedGroup);
+
+
+        // if (selectedGroup === "frequency"){
+        //     rate = 5000;
+        // }
+        // else{
+        //     rate = 0.001;
+        // };
+
+        // Create the word cloud layout using d3-cloud
+        const wordCloudLayout = d3.layout.cloud()
+            .size([svgWidth, svgHeight])
+            .words(filteredData.map(d => ({
+                text: d.job_title,
+                frequency: d.frequency
+            })))
+            .padding(5)
+            .rotate(0)
+            // .rotate(function() { return (Math.floor(Math.random() * 2)) * 90; })
+            // .fontSize(function(d) { return Math.sqrt(d.frequency * 20000); }) // Adjust as needed
+            .fontSize(function(d) { return (d.frequency*rate) }) // for wordscloud
+            .on("end", draw);
+    
+        wordCloudLayout.start();
+    }
+
+    d3.select("#selectButton").on("change", function(event,d) {
+        // recover the option that has been chosen
+        const selectedOption = d3.select(this).property("value")
+        // run the updateChart function with this selected option
+        update(selectedOption)
+    })
+
 
     // Draw the word cloud
     function draw(words) {
@@ -62,18 +130,18 @@ d3.csv("WordsCloud.csv", function(error, data) {
                 .style("opacity", 0);
 
             // tooltip.html("Job Title: " + d.text + "<br>Salary: $" + d.salary_in_usd + "<br>Frequency: %" + d.frequency)
-            tooltip.html("Job Title: " + d.text + "<br>Frequency: " + d.frequency + " %")
+            tooltip.html("Job Title: " + d.text + "<br> Feature:" + d.frequency)
                 .style("left", (d3.event.pageX + 10) + "px")
                 .style("top", (d3.event.pageY - 28) + "px")
                 .transition()
-                .duration(20)
+                .duration(10)
                 .style("opacity", 0.9);
         })
         .on("mouseout", function(d) {
             // Hide the tooltip on mouseout
             d3.select(".tooltip")
                 .transition()
-                .duration(0)
+                .duration(1)
                 .style("opacity", 0)
                 .remove();
         });

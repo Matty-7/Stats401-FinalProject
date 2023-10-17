@@ -1,21 +1,121 @@
-job_title,salary_in_usd,frequency
-Data Engineer,155596.6059,0.299872935
-Data Scientist,167908.9715,0.200762389
-Data Analyst,119623.8333,0.175349428
-Machine Learning Engineer,178140.3358,0.085133418
-Data Architect,159257.6,0.031766201
-Research Scientist,175024.0426,0.029860229
-Analytics Engineer,169465.6818,0.027954257
-Applied Scientist,191143.5,0.025412961
-Research Engineer,160519.3846,0.016518424
-Data Science Manager,212720.05,0.01270648
-Data Manager,134922.2222,0.011435832
-Data Analytics Manager,150283.3333,0.007623888
-ML Engineer,166377.4167,0.007623888
-Computer Vision Engineer,224240,0.00635324
-BI Developer,129800,0.00635324
-Machine Learning Scientist,194468.75,0.005082592
-Data Science Consultant,108166.6667,0.003811944
-Data Infrastructure Engineer,175051.6667,0.003811944
-Data Quality Analyst,82863.33333,0.003811944
-Deep Learning Engineer,130000,0.002541296
+,job_title,frequency,type
+0,Sales Director [Owner/Operator],0.0064621613204609,frequency
+1,Retail Sales Associate,0.0042042977265649,frequency
+2,Sales Director {Owner/Operator},0.0042042977265649,frequency
+3,Call Center Support Rep,0.0029585798816568,frequency
+4,Staff Accountant,0.00288072251635,frequency
+5,Scoring Content Specialist,0.0028028651510432,frequency
+6,Account Executive,0.0026471504204297,frequency
+7,Sales Manager,0.002569293055123,frequency
+8,Senior Accountant,0.002569293055123,frequency
+9,Executive Assistant,0.0024135783245094,frequency
+10,Customer Service Representative,0.0023357209592027,frequency
+11,"General Superintendent, Mission Critical - Traveling",0.0022578635938959,frequency
+12,Controller,0.0022578635938959,frequency
+13,Block Advisor - Remote Tax Professional,0.0022578635938959,frequency
+14,Project Manager,0.0021021488632824,frequency
+15,Maintenance Technician,0.0021021488632824,frequency
+16,Sales Associate,0.0020242914979757,frequency
+17,Administrative Assistant,0.0020242914979757,frequency
+18,Sales Director {Owner/Operator} ,0.0018685767673621,frequency
+19,Customer Service Representative-Farmers Direct Services P&C Licensed (Kansas/Missouri),0.0017907194020554,frequency
+20,Assistant Store Manager,0.0016350046714419,frequency
+21,Customer Success & Services Marketing Manager,0.0016350046714419,frequency
+22,Sr. Engineering Manager - Opportunity for Working Remotely,0.0015571473061351,frequency
+23,Warehouse Associate,0.0015571473061351,frequency
+24,Accounting Manager,0.0015571473061351,frequency
+25,Software Engineer,0.0014792899408284,frequency
+26,IT Operations ServiceNow Admin,0.0014792899408284,frequency
+27,Operations Manager,0.0014014325755216,frequency
+28,Business Development Manager,0.0014014325755216,frequency
+29,General Manager,0.0014014325755216,frequency
+0,Quantitative Developer,1300000.0,max_salary
+1,Fintech Startup | Tech Lead Manager - Software Engineer,1100000.0,max_salary
+2,Tech Lead Manager (L6-L8) | Disruptive FinTech,1000000.0,max_salary
+3,Urologist,800000.0,max_salary
+4,Faculty Affairs Administrator 2,792921.0,max_salary
+5,Quantitative Prop Trading Firm | Senior Software Engineer,700000.0,max_salary
+6,"President, Platforms and Software Engineering",690000.0,max_salary
+7,Area Leader,675000.0,max_salary
+8,Branch Leader,675000.0,max_salary
+9,Financial Advisor (Training Provided),600000.0,max_salary
+10,"Internal Medicine Physician - $350,000/yearly - $500,000/yearly",500000.0,max_salary
+11,Recruiting Coordinator,500000.0,max_salary
+12,"Director, Analytics - Underwriting",500000.0,max_salary
+13,remote Salesperson,500000.0,max_salary
+14,"Manager, Analytics - Underwriting",500000.0,max_salary
+15,Head of Corporate Development & Partnerships,450000.0,max_salary
+16,Head of Growth (NY Platform),440000.0,max_salary
+17,Senior Labor & Employment Attorney,425000.0,max_salary
+18,Dir Sales,410000.0,max_salary
+19,Storage Sales Specialist,405600.0,max_salary
+20,"Regional Managing Director, Post War & Contemporary Art",400000.0,max_salary
+21,Digital Experiences Analytics Senior Manager,400000.0,max_salary
+22,Digital Presales Specialist Solution Advisor,400000.0,max_salary
+23,Quantitative Researcher,400000.0,max_salary
+24,Medical Director/Attending Physician,400000.0,max_salary
+25,Sales Development Specialist,400000.0,max_salary
+26,S/4HANA Public Cloud Enterprise Architect - West,400000.0,max_salary
+27,Business Solutions Manager - Bay Area/Denver/Portland/Seattle,374400.0,max_salary
+28,Head of People,370000.0,max_salary
+29,Business Solutions Manager- Dallas/Austin/Houston/Oklahoma,364400.0,max_salary
+0,Criminal Court Clerk,998426.0,med_salary
+1,"Distinguished Engineer, Trilogy (Remote) - $800,000/year USD",800000.0,med_salary
+2,Head of Sales & Marketing (Healthcare),800000.0,med_salary
+3,"Chief Software Architect, Trilogy (Remote) - $800,000/year USD",800000.0,med_salary
+4,Senior Project Manager,750000.0,med_salary
+5,"Director of Product, MyBSWHealth",750000.0,med_salary
+6,"Head of AI Engineering, Trilogy (Remote) - $400,000/year USD",400000.0,med_salary
+7,"Account Manager (Remote) - $400,000/year USD",400000.0,med_salary
+8,"Enterprise Account Executive (Remote) - $400,000/year USD",400000.0,med_salary
+9,"Director Data Science, Trilogy (Remote) - $400,000/year USD",400000.0,med_salary
+10,"Vice President Strategy, Trilogy (Remote) - $400,000/year USD",400000.0,med_salary
+11,Accelerated Path to Management ,270890.09,med_salary
+12,Director of Women's Health,260000.0,med_salary
+13,Vice President of Service Delivery,250000.0,med_salary
+14,ServiceNow Platform Architect,250000.0,med_salary
+15,Project Manager - Pepco,250000.0,med_salary
+16,"HR Business Partner, Go To Market and Sales",240000.0,med_salary
+17,Sales Director [Owner/Operator],201182.0,med_salary
+18,IAM Solution Architect,200000.0,med_salary
+19,"AI Super Engineer, Trilogy (Remote) - $200,000/year USD",200000.0,med_salary
+20,"Artificial Intelligence Engineer, Trilogy (Remote) - $200,000/year USD",200000.0,med_salary
+21,"Technical Lead, Trilogy (Remote) - $200,000/year USD",200000.0,med_salary
+22,"AI Developer, Trilogy (Remote) - $200,000/year USD",200000.0,med_salary
+23,Continuous Improvement Specialist,200000.0,med_salary
+24,"Channel Director, GFI Software (Remote) - $200,000/year USD",200000.0,med_salary
+25,Market Lead - Denver,200000.0,med_salary
+26,"Sr Manager, IT and Professional Services",199500.0,med_salary
+27,Global Lead Solutions Marketing Manager,199000.0,med_salary
+28,Tax Director (CPA Required),190000.0,med_salary
+29,Plant Manager,180000.0,med_salary
+0,Quantitative Developer,800000.0,min_salary
+1,Tech Lead Manager (L6-L8) | Disruptive FinTech,750000.0,min_salary
+2,Urologist,600000.0,min_salary
+3,"President, Platforms and Software Engineering",510000.0,min_salary
+4,Fintech Startup | Tech Lead Manager - Software Engineer,500000.0,min_salary
+5,Head of Corporate Development & Partnerships,350000.0,min_salary
+6,"Internal Medicine Physician - $350,000/yearly - $500,000/yearly",350000.0,min_salary
+7,Vice Chief -Emergency Department,315000.0,min_salary
+8,Senior Labor & Employment Attorney,300000.0,min_salary
+9,Quantitative Prop Trading Firm | Senior Software Engineer,300000.0,min_salary
+10,"Psychiatrist, Principal Investigtor",285000.0,min_salary
+11,Business Solutions Manager - Bay Area/Denver/Portland/Seattle,283700.0,min_salary
+12,Business Solutions Manager- Dallas/Austin/Houston/Oklahoma,276100.0,min_salary
+13,"SVP, Group Director, Digital Strategy & Analytics",275000.0,min_salary
+14,Chief Development Officer ,270000.0,min_salary
+15,"Psychiatrist 2, Children and Youth, Rockland Children's Psychiatric Center, Orange BOCES, P24396",269333.0,min_salary
+16,"Executive Director, Head of Clinical Data Management",266815.0,min_salary
+17,Head of People,265000.0,min_salary
+18,AppDynamics Enterprise Sales Representative - NYC,260100.0,min_salary
+19,Medical Department Head,260000.0,min_salary
+20,"Senior Counsel, Employment",255000.0,min_salary
+21,President TOA Global - North America,250000.0,min_salary
+22,Senior Vice President of Sales,250000.0,min_salary
+23,Tax Director,250000.0,min_salary
+24,VP Product Management - Databases,248000.0,min_salary
+25,"Director of Engineering, Growth",245000.0,min_salary
+26,Associate Medical Director,245000.0,min_salary
+27,Family Physician,242500.0,min_salary
+28,Chief Financial Officer – Private Equity,240000.0,min_salary
+29,"Director, Audio and Podcast Advertising, Twitch Advertising",237500.0,min_salary
