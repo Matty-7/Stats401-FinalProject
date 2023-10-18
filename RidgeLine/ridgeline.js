@@ -159,7 +159,7 @@ d3.csv("Final.csv").then(function(data) {
         svg.selectAll('.myCurves').remove()
 
 
-        svg.select(".kernel").text("X:"+binNumber)
+        svg.select(".kernel").text("Kernel:"+binNumber)
 
         myCurves
         .data(allDensity)
