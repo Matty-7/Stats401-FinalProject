@@ -2,13 +2,11 @@
 d3.csv("Wordcloud.csv", function(error, data) {
     if (error) throw error;
 
-    // Parse salary_in_usd as numbers
     // data.forEach(function(d) {
     //     d.salary_in_usd = d.salary_in_usd;
     //     d.frequency = d.frequency;
     // });
 
-    // Set up the SVG container for the word cloud
     const svgWidth = 800;   
     const svgHeight = 600;
 
@@ -17,7 +15,6 @@ d3.csv("Wordcloud.csv", function(error, data) {
         .attr("width", svgWidth)
         .attr("height", svgHeight);
 
-    // Define the color scale based on salary_in_usd
     // var myColor = d3.scaleLinear().domain([0,1]).range(["white","black"])
 
     var myColor = d3.scaleSequential().domain([0,10]).interpolator(d3.interpolatePuRd);
@@ -29,13 +26,13 @@ d3.csv("Wordcloud.csv", function(error, data) {
      	.data(allGroup)
       .enter()
     	.append('option')
-      .text(function (d) { return d; }) // text showed in the menu
-      .attr("value", function (d) { return d; }) // corresponding value returned by the button
+      .text(function (d) { return d; })
+      .attr("value", function (d) { return d; })
 
     const filteredData = data.filter(d => d.type === "frequency");
     fre = data.filter(function(d){return d.type === "frequency";});
 
-    // Create the word cloud layout using d3-cloud
+    // Create the word cloud
     const wordCloudLayout = d3.layout.cloud()
         .size([svgWidth, svgHeight])
         .words(filteredData.map(d => ({
@@ -79,7 +76,6 @@ d3.csv("Wordcloud.csv", function(error, data) {
         //     rate = 0.001;
         // };
 
-        // Create the word cloud layout using d3-cloud
         const wordCloudLayout = d3.layout.cloud()
             .size([svgWidth, svgHeight])
             .words(filteredData.map(d => ({
@@ -97,9 +93,7 @@ d3.csv("Wordcloud.csv", function(error, data) {
     }
 
     d3.select("#selectButton").on("change", function(event,d) {
-        // recover the option that has been chosen
         const selectedOption = d3.select(this).property("value")
-        // run the updateChart function with this selected option
         update(selectedOption)
     })
 
@@ -123,7 +117,6 @@ d3.csv("Wordcloud.csv", function(error, data) {
 
         // Add mouseover interaction
         wordCloud.on("mouseover", function(d) {
-            // Display job_title, salary_in_usd, and frequency near the mouse
             const tooltip = d3.select("body")
                 .append("div")
                 .attr("class", "tooltip")
