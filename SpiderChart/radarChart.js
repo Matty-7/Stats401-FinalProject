@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	
 		function drawRadarChart(selectedCompanies) {
 			const ctx = document.getElementById('radarChart').getContext('2d');
-			const labels = ['fullTimeEmployees','volume','currentRatio','bookValue','totalCashPerShare','currentPrice'];
+			const labels = ['volume','grossMargins','currentRatio','bookValue','totalCashPerShare','currentPrice'];
 	
 			const datasets = selectedCompanies.map((company, index) => ({
 				label: company.shortName,
@@ -130,9 +130,15 @@ document.addEventListener('DOMContentLoaded', function() {
 				},
 				options: {
 					scales: {
+
 						r: {
-							beginAtZero: true
-						}
+							beginAtZero: true,
+							pointLabels: {
+								fontSize: 20
+							}
+						},
+
+
 					}
 				}
 			});
