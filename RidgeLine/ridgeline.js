@@ -178,13 +178,13 @@ d3.csv("Final.csv").then(function(data) {
           )
       }
     
-    const brush = d3.brushX()
-    .extent([[0, 0], [width, height]])
-    .on("end", brushed);
+//     const brush = d3.brushX()
+//     .extent([[0, 0], [width, height]])
+//     .on("end", brushed);
 
-  svg.append("g")
-    .attr("class", "brush")
-    .call(brush);
+//   svg.append("g")
+//     .attr("class", "brush")
+//     .call(brush);
 
     d3.select("#mySlider1").on("change", function(d){
         selectedValue = this.value
@@ -213,40 +213,40 @@ function kernelEpanechnikov(k) {
 
 
 
-function brushed(event) {
-    if (!event.selection) {
-        resetZoom();  // Reset zoom if brush is cleared
-        return;
-    }
+// function brushed(event) {
+//     if (!event.selection) {
+//         resetZoom();  // Reset zoom if brush is cleared
+//         return;
+//     }
 
-    // Getting the selected brush coordinates
-    const [x0, x1] = event.selection;
+//     // Getting the selected brush coordinates
+//     const [x0, x1] = event.selection;
     
-    // Update the x scale domain and re-render the chart
-    x.domain([x0, x1].map(x.invert, x));
+//     // Update the x scale domain and re-render the chart
+//     x.domain([x0, x1].map(x.invert, x));
 
-    // Update X axis
-    xAxis.transition().call(d3.axisBottom(x).tickValues([40800,69460,98120,126780,155440,184100]).tickSize(-height-80));
+//     // Update X axis
+//     xAxis.transition().call(d3.axisBottom(x).tickValues([40800,69460,98120,126780,155440,184100]).tickSize(-height-80));
 
-    // Update the curves directly using myCurves
+//     // Update the curves directly using myCurves
 
-    // myCurves
-    //     .transition()
-    //     .attr("d", d3.line()
-    //         .curve(d3.curveBasis)
-    //         .x(function(d) { return x(d[0]); })
-    //         .y(function(d) { return y(d[1]); })
-    //     );
+//     // myCurves
+//     //     .transition()
+//     //     .attr("d", d3.line()
+//     //         .curve(d3.curveBasis)
+//     //         .x(function(d) { return x(d[0]); })
+//     //         .y(function(d) { return y(d[1]); })
+//     //     );
 
-}
-function resetZoom() {
-    x.domain([40800, 184100]);
-    xAxis.transition().call(d3.axisBottom(x).tickValues([40800,69460,98120,126780,155440,184100]).tickSize(-height-80));
-    myCurves
-        .transition()
-        .attr("d",  d3.line()
-            .curve(d3.curveBasis)
-            .x(function(d) { return x(d[0]); })
-            .y(function(d) { return y(d[1]); })
-        );
-}
+// }
+// function resetZoom() {
+//     x.domain([40800, 184100]);
+//     xAxis.transition().call(d3.axisBottom(x).tickValues([40800,69460,98120,126780,155440,184100]).tickSize(-height-80));
+//     myCurves
+//         .transition()
+//         .attr("d",  d3.line()
+//             .curve(d3.curveBasis)
+//             .x(function(d) { return x(d[0]); })
+//             .y(function(d) { return y(d[1]); })
+//         );
+// }
