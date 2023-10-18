@@ -1,9 +1,48 @@
 <!DOCTYPE html>
 <html>
+<head>
 <meta charset="utf-8">
 
 <!-- Load d3.js -->
 <script src="d3.v7.js"></script>
+
+</head>
+<body>
+<style>
+    /* Some basic styles for the menu */
+    .menu {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background-color:  #007BFF;;
+    }
+
+    .menu li {
+        float: left;
+    }
+
+    .menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .menu li a:hover {
+        background-color: #007BFF;;
+    }
+</style>
+    <ul class="menu">
+        <li><a href="../Dashboard.html">Dashboard</a></li>
+        <li><a href="../WordCloud/WordCloud.html">Word Cloud</a></li>
+        <li><a href="../RidgeLine/RidgeLine.html">Ridge Line Plot</a></li>
+        <li><a href="../TreeMap/TreeMap.html">Tree Map</a></li>
+        <li><a href="../SpiderChart/SpiderChart.html">Radar Chart</a></li>
+        <li><a href="../BubbleMap/BubbleMap.html">Bubble Map</a></li>
+    </ul>
+<p> placeholder text placeholder text placeholder text placeholder text</p>
 
 <!-- Create a div where the graph will take place -->
 <div id="my_dataviz"></div>
@@ -14,8 +53,9 @@
   stroke: #B8B8B8;
 }
 </style> -->
-<input type="range" name="mySlider1" id=mySlider1 min="15" max="45" value="20" x = "20">
+<input type="range" name="mySlider1" id=mySlider1 min="15" max="45" value="20" x = "">
 <br>
 <input type="range" name="mySlider2" id=mySlider2 min="10" max="400" value="200">
 <script type="text/javascript", src = "ridgeLine.js"> </script>
+</body>
 </html>
