@@ -61,10 +61,10 @@ button:disabled {
 /* Adjustments for mobile screens */
 @media (max-width: 768px) {
     .chart-container {
-        width: 100%;
+        width: 90%;
     }
 
     .radar-chart {
-        width: 100%;
+        width: 90%;
     }
 }
