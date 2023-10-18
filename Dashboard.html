@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Basic styling for the dashboard */
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .item {
+            text-align: center;
+            margin: 20px;
+            padding: 10px;
+            background-color: #007BFF;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .item img {
+            width: 400px; /* Adjust this value to fit your desired image size */
+            height: auto;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .item-text {
+            margin-top: 10px;
+            cursor: pointer;
+            color: white;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="dashboard">
+    <div class="item">
+        <a href="WordCloud/WordCloud.html"><img src="images/image1.png" alt="Image 1"></a>
+        <br>
+        <a href="WordCloud/WordCloud.html" class="item-text">Word Cloud</a>
+    </div>
+
+    <div class="item">
+        <a href="RidgeLine/RidgeLine.html"><img src="images/image2.png" alt="Image 2"></a>
+        <br>
+        <a href="RidgeLine/RidgeLine.html" class="item-text">Ridge Line Plot</a>
+    </div>
+
+    <div class="item">
+        <a href="TreeMap/TreeMap.html"><img src="images/image3.png" alt="Image 3"></a>
+        <br>
+        <a href="TreeMap/TreeMap.html" class="item-text">Tree Map</a>
+    </div>
+
+    <div class="item">
+        <a href="SpiderChart/SpiderChart.html"><img src="images/image4.png" alt="Image 4"></a>
+        <br>
+        <a href="SpiderChart/SpiderChart.html" class="item-text">Radar Chart</a>
+    </div>
+
+    <div class="item">
+        <a href="BubbleMap/BubbleMap.html"><img src="images/image5.png" alt="Image 5"></a>
+        <br>
+        <a href="BubbleMap/BubbleMap.html" class="item-text">Bubble Map</a>
+    </div>
+</div>
+
+</body>
+
+</html>
