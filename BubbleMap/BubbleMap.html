@@ -28,12 +28,54 @@
     <title>FinalProject-BubbleMap</title>
 </head>
 <body>
-    <nav>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-    </nav>
+    <style>
+        /* Some basic styles for the menu */
+        .menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background-color:  #007BFF;;
+        }
+    
+        .menu li {
+            float: left;
+        }
+    
+        .menu li a {
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+    
+        .menu li a:hover {
+            background-color: #007BFF;;
+        }
+    </style>
+    <ul class="menu">
+        <li><a href="Dashboard.html">Dashboard</a></li>
+        <li><a href="../WordCloud/WordCloud.html">Word Cloud</a></li>
+        <li><a href="../RidgeLine/RidgeLine.html">Ridge Line Plot</a></li>
+        <li><a href="../TreeMap/TreeMap.html">Tree Map</a></li>
+        <li><a href="../SpiderChart/SpiderChart.html">Radar Chart</a></li>
+        <li><a href="../BubbleMap/BubbleMap.html">Bubble Map</a></li>
+    </ul>
 
     <!-- Add the dropdown with the new CSS class -->
+    <style>
+        select {
+            color: white ;
+            background-color: grey;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+
     <select id="jobCountFilter" class="dropdown-menu">
         <option value="all">All</option>
         <option value="0-50">0-50</option>
@@ -41,7 +83,9 @@
         <option value="150-1000">150-1000</option>
     </select>
 
-     <script type="text/javascript" src="map.js"></script>
+    <p>aaaaa</p>
+
+    <script type="text/javascript" src="map.js"></script>
 
 </body>
 </html>

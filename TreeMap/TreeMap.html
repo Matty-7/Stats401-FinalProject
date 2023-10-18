@@ -6,11 +6,57 @@
   <title>Final Project</title>
   <script type="text/javascript" src="d3.v7.js"></script>
 </head>
-
 <body>
+  <style>
+    /* Some basic styles for the menu */
+    .menu {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+        background-color:  #007BFF;;
+    }
+
+    .menu li {
+        float: left;
+    }
+
+    .menu li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .menu li a:hover {
+        background-color: #007BFF;;
+    }
+</style>
+<ul class="menu">
+    <li><a href="Dashboard.html">Dashboard</a></li>
+    <li><a href="../WordCloud/WordCloud.html">Word Cloud</a></li>
+    <li><a href="../RidgeLine/RidgeLine.html">Ridge Line Plot</a></li>
+    <li><a href="../TreeMap/TreeMap.html">Tree Map</a></li>
+    <li><a href="../SpiderChart/SpiderChart.html">Radar Chart</a></li>
+    <li><a href="../BubbleMap/BubbleMap.html">Bubble Map</a></li>
+</ul>
+<p>aaaaa</p>
+<style>
+  select {
+      color: white ;
+      background-color: #007BFF;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 5px;
+  }
+</style>
+<select id="selectButton"></select>
 <script type="text/javascript" src = "TreeMap.js">
 </script>
-<select id="selectButton"></select>
+
 </body>
 
 </html>
