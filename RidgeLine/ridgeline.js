@@ -13,7 +13,7 @@ const svg = d3.select("#mySvg")
           `translate(${margin.left}, ${margin.top})`);
 
 //read data
-d3.csv("Glassdoor_Gender_Pay_Gap_Processed.csv").then(function(data) {
+d3.csv("Final.csv").then(function(data) {
 
   // Get the different categories and count them
   const categories = data.columns
@@ -21,7 +21,7 @@ d3.csv("Glassdoor_Gender_Pay_Gap_Processed.csv").then(function(data) {
 
   // Add X axis
   const x = d3.scaleLinear()
-    .domain([-10, 140])
+    .domain([-10, 300000])
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", `translate(0, ${height})`)
