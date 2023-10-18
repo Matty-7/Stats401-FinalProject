@@ -6,9 +6,19 @@ d3.json("Glassdoor_Gender_Pay_Gap_Processed.json").then(data => {
     const categories = Array.from(groupedData.keys());
   
     // 准备用于绘图的数据
-    const plotData = Array.from(groupedData, ([key, value]) => {
-      return { education: key, salaries: value.map(d => d.Salary) };
-    });
+    
+    // Define the education order for sorting
+    const educationOrder = ["PhD", "Master", "College", "High School"];
+
+    // Sort the grouped data according to the education order
+    const sortedGroupedData = Array.from(groupedData.keys()).sort((a, b) => {
+        return educationOrder.indexOf(a) - educationOrder.indexOf(b);
+    }).map(key => [key, groupedData.get(key)]);
+
+    
+    const plotData = Array.from(sortedGroupedData, ([key, value]) => {
+        return { education: key, salaries: value.map(d => d.Salary) };
+        });
   
     // 设置维度和图表边距
     const margin = {top: 80, right: 30, bottom: 50, left: 110},
@@ -39,6 +49,10 @@ d3.json("Glassdoor_Gender_Pay_Gap_Processed.json").then(data => {
       .domain(categories)
       .range([0, height])
       .paddingInner(1);
+
+    const colorScale = d3.scaleOrdinal(d3.schemeCategory10)
+    .domain(categories);
+
   
     // 添加y轴
     svg.append("g")
@@ -62,7 +76,8 @@ d3.json("Glassdoor_Gender_Pay_Gap_Processed.json").then(data => {
       .data(allDensity)
       .join("path")
         .attr("transform", d => `translate(0, ${yName(d.key) - height})`)
-        .attr("fill", "#69b3a2")  // 你可以通过一个颜色比例尺来为不同的教育程度设置不同的颜色
+        .attr("fill", d => colorScale(d.key))
+        // 你可以通过一个颜色比例尺来为不同的教育程度设置不同的颜色
         .attr("opacity", 0.7)
         .attr("stroke", "#000")
         .attr("stroke-width", 0.1)
