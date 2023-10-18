@@ -1,81 +1,50 @@
-// set the dimensions and margins of the graph
-const margin = {top: 60, right: 30, bottom: 20, left:110},
-    width = 460 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom;
 
-// append the svg object to the body of the page
-const svg = d3.select("#mySvg")
-  .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
-          `translate(${margin.left}, ${margin.top})`);
+// Read the Final.csv data using d3.csv (d3.js v7)
+d3.csv("Final.csv").then(data => {
+    console.log("Data loaded:", data);
+    
+    // Set up the SVG container and chart dimensions
+    const margin = {top: 20, right: 20, bottom: 30, left: 50};
+    const width = 960 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
 
-//read data
-d3.csv("Final.csv").then(function(data) {
+    // Create the SVG container
+    const svg = d3.select("#mySvg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-  // Get the different categories and count them
-  const categories = data.columns
-  const n = categories.length
+    // Define scales and other chart elements
+    const xScale = d3.scaleLinear().range([0, width]);
+    const yScale = d3.scalePoint().range([height, 0]);
+    const area = d3.area().curve(d3.curveBasis);
 
-  // Add X axis
-  const x = d3.scaleLinear()
-    .domain([-10, 300000])
-    .range([ 0, width ]);
-  svg.append("g")
-    .attr("transform", `translate(0, ${height})`)
-    .call(d3.axisBottom(x));
+    // Prepare the data (modified to include all columns)
+    const keys = data.columns;  // Include all columns as data
+    const values = data.map(d => keys.map(key => +d[key]));
 
-  // Create a Y scale for densities
-  const y = d3.scaleLinear()
-    .domain([0, 0.4])
-    .range([ height, 0]);
+    // Set scale domains
+    xScale.domain([0, d3.max(values.flat())]);
+    yScale.domain(keys);
 
-  // Create the Y axis for names
-  const yName = d3.scaleBand()
-    .domain(categories)
-    .range([0, height])
-    .paddingInner(1)
-  svg.append("g")
-    .call(d3.axisLeft(yName));
+    // Draw the Ridgeline paths
+    const offset = 50;  // Vertical offset between the paths
+    keys.forEach((key, i) => {
+        const y = yScale(key);
+        const vals = values.map(d => d[i]);
 
-  // Compute kernel density estimation for each column:
-  const kde = kernelDensityEstimator(kernelEpanechnikov(7), x.ticks(40)) // increase this 40 for more accurate density.
-  const allDensity = []
-  for (i = 0; i < n; i++) {
-      key = categories[i]
-      density = kde( data.map(function(d){  return d[key]; }) )
-      allDensity.push({key: key, density: density})
-  }
-
-  // Add areas
-  svg.selectAll("areas")
-    .data(allDensity)
-    .join("path")
-      .attr("transform", function(d){return(`translate(0, ${(yName(d.key)-height)})`)})
-      .datum(function(d){return(d.density)})
-      .attr("fill", "#69b3a2")
-      .attr("stroke", "#000")
-      .attr("stroke-width", 1)
-      .attr("d",  d3.line()
-          .curve(d3.curveBasis)
-          .x(function(d) { return x(d[0]); })
-          .y(function(d) { return y(d[1]); })
-      )
-
-})
-
-// This is what I need to compute kernel density estimation
-function kernelDensityEstimator(kernel, X) {
-  return function(V) {
-    return X.map(function(x) {
-      return [x, d3.mean(V, function(v) { return kernel(x - v); })];
+        svg.append("path")
+            .datum(vals)
+            .attr("fill", "#69b3a2")
+            .attr("stroke", "#000")
+            .attr("stroke-width", 1)
+            .attr("d", area.y1(d => y - offset + d));
     });
-  };
-}
-function kernelEpanechnikov(k) {
-  return function(v) {
-    return Math.abs(v /= k) <= 1 ? 0.75 * (1 - v * v) / k : 0;
-  };
-}
+
+    // Add axes (optional)
+    const xAxis = d3.axisBottom(xScale);
+    const yAxis = d3.axisLeft(yScale);
+    svg.append("g").attr("transform", `translate(0, ${height})`).call(xAxis);
+    svg.append("g").call(yAxis);
+});
